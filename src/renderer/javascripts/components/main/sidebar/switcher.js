@@ -46,14 +46,6 @@ const Switcher = () => {
           <CardIcon with="28" height="28" />
         </div>
       </Tooltip>
-      <Tooltip content="Password Audit" className="bottom">
-        <div
-          className={itemClassname('audit', 'audit-button')}
-          onClick={() => switchScope('audit')}
-        >
-          <AuditIcon with="30" height="30" />
-        </div>
-      </Tooltip>
     </div>
   )
 }

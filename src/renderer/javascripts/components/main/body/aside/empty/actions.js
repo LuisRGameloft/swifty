@@ -25,15 +25,6 @@ export default () => {
           Create First Entry
         </a>
       </div>
-      <div>or</div>
-      <div>
-        <span
-          className={classnames('button', { loading: isLoading })}
-          onClick={onImport}
-        >
-          Import from Gdrive
-        </span>
-      </div>
     </div>
   )
 }

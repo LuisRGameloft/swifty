@@ -47,12 +47,6 @@ const Vault = ({ section }) => {
     <>
       <h1>Vault Settings</h1>
       <div className="section">
-        <strong>Synchronize</strong>
-        <div>Synchronize your vault with Google Drive</div>
-        {syncAction()}
-      </div>
-
-      <div className="section">
         <strong>Backup</strong>
         <div>Allows you to save a backup of your default vault file</div>
         <div className="button iconed" onClick={onClickSaveBackup}>

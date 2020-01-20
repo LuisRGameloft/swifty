@@ -4,30 +4,31 @@ import AuthWindow from '../../../../window/auth'
 import Storage from '../../../storage'
 
 export const credentialsFile = () => {
-  if (!process.env.APP_ENV || process.env.APP_ENV === 'production') {
+  /*if (!process.env.APP_ENV || process.env.APP_ENV === 'production') {
     return 'gdrive.swftx'
   }
-  return `gdrive_${process.env.APP_ENV}.swftx`
+  return `gdrive_${process.env.APP_ENV}.swftx`*/
+  return ''
 }
 
 export default class Client {
   constructor(cryptor) {
     this.cryptor = cryptor
-    this.storage = new Storage(path.join('auth', credentialsFile()))
+    //this.storage = new Storage(path.join('auth', credentialsFile()))
     this.auth = this.buildAuth()
     this.auth.on('tokens', tokens => this.updataTokens(tokens))
   }
 
   buildAuth() {
     return new google.auth.OAuth2(
-      process.env.GOOGLE_OAUTH_CLIENT_ID,
-      process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-      `${CONFIG.apiHost}/google_oauth2/callback`
+      '',
+      '',
+      'none'
     )
   }
 
   getAuth() {
-    this.auth.setCredentials(this.readTokens())
+    //this.auth.setCredentials(this.readTokens())
     return this.auth
   }
 
@@ -47,22 +48,23 @@ export default class Client {
 
   disconnect() {
     const tokens = this.readTokens()
-    this.writeTokens(Object.assign({}, { refresh_token: tokens.refresh_token }))
+    //this.writeTokens(Object.assign({}, { refresh_token: tokens.refresh_token }))
   }
 
   updataTokens(tokens) {
-    const credentials = this.readTokens() || {}
-    this.auth.setCredentials(tokens)
-    this.writeTokens(Object.assign(credentials, tokens))
+    //const credentials = this.readTokens() || {}
+    //this.auth.setCredentials(tokens)
+    //this.writeTokens(Object.assign(credentials, tokens))
   }
 
   writeTokens(tokens) {
-    return this.storage.write(this.cryptor.encrypt(JSON.stringify(tokens)))
+    //return this.storage.write(this.cryptor.encrypt(JSON.stringify(tokens)))
   }
 
   readTokens() {
     try {
-      return JSON.parse(this.cryptor.decrypt(this.storage.read()))
+      //return JSON.parse(this.cryptor.decrypt(this.storage.read()))
+      return null
     } catch (e) {
       return null
     }
