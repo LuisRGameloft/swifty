@@ -48,6 +48,6 @@ export default class AuthWindow extends BrowserWindow {
   }
 
   isAuthSuccess(url) {
-    return url.match(`${CONFIG.apiHost}/google_oauth2/callback`)
+    return false
   }
 }

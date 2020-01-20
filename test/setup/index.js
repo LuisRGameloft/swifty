@@ -1,5 +1,5 @@
 global.CONFIG = {
-  apiHost: 'https://example.com',
+  apiHost: 'https://localhost',
   googleOauth: {
     scope: 'user,email'
   }
