@@ -38,6 +38,14 @@ window.onBackupLoaded = callback => {
   ipcRenderer.once('backup:loaded', callback)
 }
 
+window.DbFileSelect = () => {
+  ipcRenderer.send('database:selectFile')
+}
+
+window.onDBSelectFilePath = callback => {
+  ipcRenderer.on('database:selectFilePath', callback)
+}
+
 window.sendBackupPassword = password => {
   ipcRenderer.send('backup:password', password)
 }
