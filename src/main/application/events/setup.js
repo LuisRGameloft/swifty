@@ -23,7 +23,7 @@ export const onBackupSelect = function() {
 }
 
 export const onSetupDone = function() {
-  ipcMain.on('setup:done', (event, hashedSecret) => {
+  ipcMain.on('setup:done', (event, hashedSecret, file) => {
     this.cryptor = new Cryptor(hashedSecret)
     this.vault.setup(this.cryptor)
     this.sync.initialize(this.vault, this.cryptor)
@@ -31,4 +31,18 @@ export const onSetupDone = function() {
   })
 }
 
-export default { onBackupSelect, onSetupDone }
+export const onSelectFile = function() {
+  ipcMain.on('database:selectFile', (event) => {
+    dialog
+      .showOpenDialog({ properties: ['promptToCreate'] })
+      .then(({ filePaths, canceled }) => {
+        if (canceled) return
+        
+        // reply event
+        event.reply('database:selectFilePath', filePaths[0])
+      })
+      .catch(() => {})
+  })
+}
+
+export default { onBackupSelect, onSetupDone, onSelectFile }

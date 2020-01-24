@@ -21,8 +21,8 @@ window.sendAuthTouchId = () => {
   ipcRenderer.send('auth:touchid')
 }
 
-window.sendSetupDone = password => {
-  ipcRenderer.send('setup:done', password)
+window.sendSetupDone = (password, file) => {
+  ipcRenderer.send('setup:done', password, file)
 }
 
 // Backup and Vault

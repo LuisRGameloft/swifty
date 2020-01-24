@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Masterpass from 'components/elements/masterpass'
 
-export default ({ display, hashedSecret }) => {
+export default ({ display, hashedSecret, dbFile }) => {
   const [confirmation, setConfirmation] = useState(null)
   const [error, setError] = useState(null)
 
@@ -13,7 +13,7 @@ export default ({ display, hashedSecret }) => {
   const onSend = () => {
     if (hashedSecret === confirmation) {
       window.setupCryptor(hashedSecret)
-      window.sendSetupDone(hashedSecret)
+      window.sendSetupDone(hashedSecret, dbFile)
     } else {
       setError('Passwords do not match')
     }

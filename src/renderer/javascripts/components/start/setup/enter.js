@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Masterpass from 'components/elements/masterpass'
 import Back from 'back.svg'
 
-export default ({ display, onEnter, goBack }) => {
+export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
+  const [dataBaseFile, setDataBaseFile] = useState(null)
   const [hashedSecret, setHashedSecret] = useState(null)
   const [error, setError] = useState(null)
 
@@ -12,17 +13,34 @@ export default ({ display, onEnter, goBack }) => {
   }
 
   const onSend = () => {
+    if (!dataBaseFile) {
+      setError('Please create a new database file')
+      return
+    }
+    
     if (hashedSecret) {
       onEnter(hashedSecret)
+      onDataBaseFilePath(dataBaseFile)
     } else {
       setError('Fill in the password')
     }
+  }
+
+  const onOpenDataBase = () => {
+    window.onDBSelectFilePath((event, path) => {
+      setDataBaseFile(path)
+    })
+    window.DbFileSelect()
   }
 
   if (!display) return null
 
   return (
     <div className="bottom-lock">
+      <div className="button" onClick={onOpenDataBase}>
+        Database File
+      </div>
+      <br />
       <Masterpass
         placeholder="Set Master Password"
         error={error}

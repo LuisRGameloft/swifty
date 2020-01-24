@@ -5,6 +5,7 @@ import Confirm from './confirm'
 
 export default ({ goBack }) => {
   const [hashedSecret, setHashedSecret] = useState(null)
+  const [dbfilePath, setdbfilePath] = useState(null)
 
   return (
     <div className="lock-screen">
@@ -21,8 +22,9 @@ export default ({ goBack }) => {
         display={hashedSecret === null}
         goBack={goBack}
         onEnter={setHashedSecret}
+        onDataBaseFilePath={setdbfilePath}
       />
-      <Confirm display={hashedSecret !== null} hashedSecret={hashedSecret} />
+      <Confirm display={hashedSecret !== null} hashedSecret={hashedSecret} dbFile={dbfilePath} />
     </div>
   )
 }
