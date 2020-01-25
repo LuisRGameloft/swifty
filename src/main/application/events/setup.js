@@ -11,6 +11,7 @@ export const onBackupSelect = function() {
         ipcMain.on('backup:password', (event, hashedSecret) => {
           this.cryptor = new Cryptor(hashedSecret)
           if (this.vault.import(filePaths[0], this.cryptor)) {
+            this.vault.updateStorageVault(filePaths[0])
             this.sync.initialize(this.vault, this.cryptor)
             return this.authSuccess()
           }
@@ -25,6 +26,7 @@ export const onBackupSelect = function() {
 export const onSetupDone = function() {
   ipcMain.on('setup:done', (event, hashedSecret, file) => {
     this.cryptor = new Cryptor(hashedSecret)
+    this.vault.updateStorageVault(file)
     this.vault.setup(this.cryptor)
     this.sync.initialize(this.vault, this.cryptor)
     return this.authSuccess()

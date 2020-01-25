@@ -8,6 +8,10 @@ const appDir = () => {
 
 export default class Storage {
   constructor(file) {
+    if (file == null) { 
+      return 
+    }
+    
     this.path = !path.isAbsolute(file) ? path.join(appDir(), file) : file
     fs.ensureFileSync(this.path)
   }
@@ -26,11 +30,16 @@ export default class Storage {
   }
 
   import(path) {
-    return fs.readFileSync(path).toString('utf8')
+    try {
+      return fs.readFileSync(path).toString('utf8')
+    } catch (e) {
+      return ''
+    }
   }
 
   export(path) {
-    const destination = !path.match(/\.swftx$/) ? `${path}.swftx` : path
-    return fs.copyFileSync(this.path, destination)
+    //const destination = !path.match(/\.swftx$/) ? `${path}.swftx` : path
+    //return fs.copyFileSync(this.path, destination)
+    return undefined
   }
 }

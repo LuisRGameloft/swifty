@@ -13,7 +13,11 @@ export const vaultFile = () => {
 
 export default class Vault {
   constructor() {
-    this.storage = new Storage(vaultFile())
+    this.storage = new Storage(null)
+  }
+
+  updateStorageVault(path) {
+    this.storage = new Storage(path)
   }
 
   authenticate(cryptor) {
@@ -47,7 +51,7 @@ export default class Vault {
   import(path, cryptor) {
     const data = this.storage.import(path)
     if (this.isDecryptable(data, cryptor)) {
-      return this.storage.write(data)
+      return true
     }
     return false
   }
