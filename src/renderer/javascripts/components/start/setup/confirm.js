@@ -24,6 +24,7 @@ export default ({ display, hashedSecret, dbFile }) => {
       window.sendSetupDone(hashedSecret, dbFile)
     } else {
       setError('Passwords do not match')
+      masterconfirmpassRef.current.focus()
     }
   }
 
