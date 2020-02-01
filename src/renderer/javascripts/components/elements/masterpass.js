@@ -27,7 +27,7 @@ export default React.forwardRef((props, ref) => {
         maxLength="24"
         placeholder={placeholderText()}
         onChange={props.onChange}
-        onKeyDown={props.handleKeyDown}
+        onKeyDown={handleKeyDown}
         ref={ref}
       />
       {props.touchID && (
