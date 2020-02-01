@@ -33,6 +33,9 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
     window.DbFileSelect()
   }
 
+  window.onDBCancelSelectFilePath((event) => {
+  })
+  
   if (!display) return null
 
   return (
