@@ -9,6 +9,10 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
 
   const masterpassRef = React.useRef()
 
+  React.useEffect(() => {
+    masterpassRef.current.focus()
+  })
+
   const onChange = event => {
     setError(null)
     setHashedSecret(window.hashSecret(event.currentTarget.value))
@@ -31,11 +35,13 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
   const onOpenDataBase = () => {
     window.onDBSelectFilePath((event, path) => {
       setDataBaseFile(path)
+      masterpassRef.current.focus()
     })
     window.DbFileSelect()
   }
 
   window.onDBCancelSelectFilePath((event) => {
+    masterpassRef.current.focus()
   })
   
   if (!display) return null
