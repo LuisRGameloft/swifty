@@ -46,6 +46,10 @@ window.onDBSelectFilePath = callback => {
   ipcRenderer.on('database:selectFilePath', callback)
 }
 
+window.onDBCancelSelectFilePath = callback => {
+  ipcRenderer.on('database:cancelSelectFilePath', callback)
+}
+
 window.sendBackupPassword = password => {
   ipcRenderer.send('backup:password', password)
 }
