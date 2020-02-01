@@ -38,7 +38,11 @@ export const onSelectFile = function() {
     dialog
       .showOpenDialog({ properties: ['promptToCreate'] })
       .then(({ filePaths, canceled }) => {
-        if (canceled) return
+        if (canceled) {
+          // reply event in case to cancel choose file 
+          event.reply('database:cancelSelectFilePath')
+          return
+        }
         
         // reply event
         event.reply('database:selectFilePath', filePaths[0])
