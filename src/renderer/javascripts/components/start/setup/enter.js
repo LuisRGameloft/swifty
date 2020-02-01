@@ -10,7 +10,9 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
   const masterpassRef = React.useRef()
 
   React.useEffect(() => {
-    masterpassRef.current.focus()
+    if(masterpassRef && masterpassRef.current) {
+      masterpassRef.current.focus()
+    }
   })
 
   const onChange = event => {
