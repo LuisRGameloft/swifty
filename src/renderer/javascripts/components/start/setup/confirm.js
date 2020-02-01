@@ -5,6 +5,14 @@ export default ({ display, hashedSecret, dbFile }) => {
   const [confirmation, setConfirmation] = useState(null)
   const [error, setError] = useState(null)
 
+  const masterconfirmpassRef = React.useRef()
+
+  React.useEffect(() => {
+    if(masterconfirmpassRef && masterconfirmpassRef.current) {
+      masterconfirmpassRef.current.focus()
+    }
+  })
+  
   const onChange = event => {
     setError(null)
     setConfirmation(window.hashSecret(event.currentTarget.value))
@@ -28,6 +36,7 @@ export default ({ display, hashedSecret, dbFile }) => {
         error={error}
         onEnter={onSend}
         onChange={onChange}
+        ref={masterconfirmpassRef}
       />
       <br />
       <div className="button" onClick={onSend}>
