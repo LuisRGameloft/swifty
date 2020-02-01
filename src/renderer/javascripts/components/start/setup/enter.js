@@ -7,6 +7,8 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
   const [hashedSecret, setHashedSecret] = useState(null)
   const [error, setError] = useState(null)
 
+  const masterpassRef = React.useRef()
+
   const onChange = event => {
     setError(null)
     setHashedSecret(window.hashSecret(event.currentTarget.value))
@@ -49,6 +51,7 @@ export default ({ display, onEnter, goBack, onDataBaseFilePath }) => {
         error={error}
         onEnter={onSend}
         onChange={onChange}
+        ref={masterpassRef}
       />
       <br />
       <div className="button" onClick={onSend}>
