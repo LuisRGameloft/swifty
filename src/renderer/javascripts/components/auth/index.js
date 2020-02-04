@@ -6,11 +6,11 @@ import img from 'swifty.png'
 export default ({ touchID }) => {
   const [error, setError] = useState(null)
 
-  const masterpassRef = React.useRef()
+  const authpassRef = React.useRef()
 
   React.useEffect(() => {
-    if(masterpassRef && masterpassRef.current) {
-      masterpassRef.current.focus()
+    if(authpassRef && authpassRef.current) {
+      authpassRef.current.focus()
     }
   })
 
@@ -20,7 +20,7 @@ export default ({ touchID }) => {
     window.sendAuthStart(hashedSecret)
     window.onAuthFail(() => {
       setError('Incorrect Master Password')
-      masterpassRef.current.focus()
+      authpassRef.current.focus()
     })
   }
 
@@ -46,7 +46,7 @@ export default ({ touchID }) => {
             onChange={handleChange}
             onEnter={handleEnter}
             onTouchID={handleTouchId}
-            ref={masterpassRef}
+            ref={authpassRef}
           />
         </div>
       </div>

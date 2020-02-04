@@ -5,11 +5,11 @@ export default ({ display, hashedSecret, dbFile }) => {
   const [confirmation, setConfirmation] = useState(null)
   const [error, setError] = useState(null)
 
-  const masterconfirmpassRef = React.useRef()
+  const confirmpassRef = React.useRef()
 
   React.useEffect(() => {
-    if(masterconfirmpassRef && masterconfirmpassRef.current) {
-      masterconfirmpassRef.current.focus()
+    if(confirmpassRef && confirmpassRef.current) {
+      confirmpassRef.current.focus()
     }
   })
   
@@ -24,7 +24,7 @@ export default ({ display, hashedSecret, dbFile }) => {
       window.sendSetupDone(hashedSecret, dbFile)
     } else {
       setError('Passwords do not match')
-      masterconfirmpassRef.current.focus()
+      confirmpassRef.current.focus()
     }
   }
 
@@ -37,7 +37,7 @@ export default ({ display, hashedSecret, dbFile }) => {
         error={error}
         onEnter={onSend}
         onChange={onChange}
-        ref={masterconfirmpassRef}
+        ref={confirmpassRef}
       />
       <br />
       <div className="button" onClick={onSend}>

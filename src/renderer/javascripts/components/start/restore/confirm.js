@@ -5,6 +5,14 @@ export default ({ display }) => {
   const [hashedSecret, setHashedSecret] = useState()
   const [error, setError] = useState()
 
+  const restoreconfirmRef = React.useRef()
+
+  React.useEffect(() => {
+    if(restoreconfirmRef && restoreconfirmRef.current) {
+      restoreconfirmRef.current.focus()
+    }
+  })
+
   const onChange = event => {
     setError(null)
     setHashedSecret(window.hashSecret(event.currentTarget.value))
@@ -15,6 +23,7 @@ export default ({ display }) => {
     window.sendBackupPassword(hashedSecret)
     window.onBackupPasswordFail(() => {
       setError('Invalid password for backup')
+      restoreconfirmRef.current.focus()
     })
   }
 
@@ -27,6 +36,7 @@ export default ({ display }) => {
         error={error}
         onEnter={onSend}
         onChange={onChange}
+        ref={restoreconfirmRef}
       />
       <br />
       <div className="button" onClick={onSend}>
