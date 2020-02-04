@@ -4,6 +4,12 @@ import SecureField from './secure'
 import TagField from './tag'
 
 const Card = ({ entry, validate, onChange, onTagsChange }) => {
+  const cardRefData = React.useRef()
+  
+  React.useEffect(() => {
+    cardRefData.current.focus()
+  },[])
+
   return (
     <>
       <Field
@@ -12,6 +18,7 @@ const Card = ({ entry, validate, onChange, onTagsChange }) => {
         entry={entry}
         onChange={onChange}
         maxLength="40"
+        ref={cardRefData}
       />
       <Field
         name="Number"

@@ -6,6 +6,12 @@ import SecureField from './secure'
 import TagField from './tag'
 
 const Login = ({ entry, validate, onChange, onTagsChange }) => {
+  const loginRefData = React.useRef()
+  
+  React.useEffect(() => {
+    loginRefData.current.focus()
+  },[])
+  
   const generatePassword = () => {
     const password = window.generatePassword(getProps())
     onChange({ target: { name: 'password', value: password } })
@@ -19,6 +25,7 @@ const Login = ({ entry, validate, onChange, onTagsChange }) => {
         entry={entry}
         onChange={onChange}
         maxLength="40"
+        ref={loginRefData}
       />
       <Field name="Website" entry={entry} onChange={onChange} />
       <Field
