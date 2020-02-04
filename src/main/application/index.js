@@ -63,9 +63,9 @@ export default class Swifty extends Application {
     this.window.on('show', () => (this.closed = false))
     this.window.on('blur', () => {
       if (this.closed) return
-      this.inactiveTimeout = setTimeout(() => {
+      /*this.inactiveTimeout = setTimeout(() => {
         if (this.cryptor) this.showAuth()
-      }, INACTIVE_TIMEOUT)
+      }, INACTIVE_TIMEOUT)*/
     })
     this.window.on('focus', () => clearTimeout(this.inactiveTimeout))
   }
