@@ -11,7 +11,7 @@ export default ({ display, onImport, goBack }) => {
   return (
     <>
       <div className="button choose-file" onClick={chooseFle}>
-        Choose backup File
+        Choose Database File
       </div>
       <br />
       <span className="navigate-back" onClick={() => goBack()}>

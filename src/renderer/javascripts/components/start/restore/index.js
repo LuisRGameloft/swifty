@@ -13,10 +13,10 @@ export default ({ goBack }) => {
     <div className="lock-screen">
       <div className="top-lock">
         <Backup width="48" />
-        <h2>Restore Backup</h2>
+        <h2>Open Database</h2>
         <div className="instructions">
-          If you've been using Swifty before you can restore your data from
-          backup file. Your Master Password will be required for this.
+          If you've been using Swifty before you can open your data from
+          databse file. Your Master Password will be required for this.
         </div>
       </div>
       <div className="bottom-lock">

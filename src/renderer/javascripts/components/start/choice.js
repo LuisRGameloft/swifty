@@ -7,16 +7,16 @@ export default ({ onSelect }) => {
     <div className="lock-screen">
       <div className="top-lock">
         <NewUser width="48" />
-        <h2>I am a new User</h2>
+        <h2>Database</h2>
         <div className="button" onClick={() => onSelect('setup')}>
-          Setup Master Password
+         Create Database
         </div>
       </div>
       <div className="bottom-lock">
         <Backup width="48" />
-        <h2>I am existing User</h2>
+        <h2>Use Database</h2>
         <div className="button" onClick={() => onSelect('restore')}>
-          Restore from Backup
+          Open Database
         </div>
       </div>
     </div>

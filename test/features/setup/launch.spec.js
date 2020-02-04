@@ -10,24 +10,24 @@ describe('Application first launch', function() {
   it('shows new user section', () => {
     return expect(
       app.client.getText('.top-lock h2')
-    ).to.eventually.equal('I am a new User')
+    ).to.eventually.equal('Database')
   })
 
   it('shows new user button', () => {
     return expect(
       app.client.getText('.top-lock .button')
-    ).to.eventually.equal('Setup Master Password')
+    ).to.eventually.equal('Create Database')
   })
 
   it('shows restore backup section', () => {
     return expect(
       app.client.getText('.bottom-lock h2')
-    ).to.eventually.equal('I am existing User')
+    ).to.eventually.equal('Use Database')
   })
 
   it('shows restore button', () => {
     return expect(
       app.client.getText('.bottom-lock .button')
-    ).to.eventually.equal('Restore from Backup')
+    ).to.eventually.equal('Open Database')
   })
 })
