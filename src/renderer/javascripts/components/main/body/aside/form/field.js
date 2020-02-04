@@ -1,43 +1,44 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export default ({ name, entry, validate, onChange, rows, maxLength }) => {
+export default React.forwardRef((props, ref) => {
   const isEmpty = () => {
-    return entry[name.toLowerCase()].trim() === ''
+    return props.entry[props.name.toLowerCase()].trim() === ''
   }
 
   const classNames = () => {
-    return classnames('field', { error: validate && isEmpty() })
+    return classnames('field', { error: props.validate && isEmpty() })
   }
 
   const renderInput = () => {
-    if (rows && rows !== '1') {
+    if (props.rows && props.rows !== '1') {
       return (
         <textarea
-          name={name.toLowerCase()}
+          name={props.name.toLowerCase()}
           cols="10"
-          rows={rows}
-          onChange={onChange}
-          maxLength={maxLength ? maxLength : ''}
-          value={entry[name.toLowerCase()]}
+          rows={props.rows}
+          onChange={props.onChange}
+          maxLength={props.maxLength ? props.maxLength : ''}
+          value={props.entry[props.name.toLowerCase()]}
         />
       )
     }
     return (
       <input
-        name={name.toLowerCase()}
+        name={props.name.toLowerCase()}
         type="text"
-        maxLength={maxLength ? maxLength : ''}
-        onChange={onChange}
-        value={entry[name.toLowerCase()]}
+        maxLength={props.maxLength ? props.maxLength : ''}
+        onChange={props.onChange}
+        value={props.entry[props.name.toLowerCase()]}
+        ref={ref}
       />
     )
   }
 
   return (
     <div className={classNames()}>
-      <label htmlFor="">{name}</label>
+      <label htmlFor="">{props.name}</label>
       {renderInput()}
     </div>
   )
-}
+})
