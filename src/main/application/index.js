@@ -58,7 +58,7 @@ export default class Swifty extends Application {
   setupWindowEvents() {
     this.window.on('close', () => {
       this.closed = true
-      this.showAuth()
+      //this.showAuth()
     })
     this.window.on('show', () => (this.closed = false))
     this.window.on('blur', () => {
