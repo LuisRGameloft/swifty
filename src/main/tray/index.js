@@ -15,12 +15,7 @@ export default class Tray extends electron.Tray {
   menu() {
     return Menu.buildFromTemplate([
       { label: 'Open Swifty', click: () => this.app.window.show() },
-      { label: 'Lock Screen', click: () => this.app.showAuth() },
-      { type: 'separator' },
-      {
-        label: 'About',
-        click: () => shell.openExternal('https://getswifty.pro')
-      },
+      
       { type: 'separator' },
       { label: 'Quit', role: 'quit' }
     ])
